@@ -12,6 +12,22 @@
   </style>
 </head>
 <body>
-  <div id="game-board"></div>
+    <div id="game-board"></div>
+    <div class="modal-content">
+        <p class="modal-header">515</p>
+        <p class="modal-text">This is a Breaking Bad themed verison of the game 2048.</p>
+        <p class="modal-text">It follows the same rules as normal 2048.</p>
+        <p class="modal-text">I know it is impossible to get 515 in the game, the name is a Breaking bad reference.</p>
+    </div>
 </body>
+<script>
+    const modal = document.querySelector('.modal-content')
+    function hideModal() {
+        modal.style.animation = 'leave 0.1s'
+        setTimeout(() => {
+            modal.remove()
+        }, 99)
+    }
+    modal.addEventListener('click', hideModal)
+</script>
 </html>
