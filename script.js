@@ -47,6 +47,52 @@ async function handleInput(e) {
       return
   }
 
+ document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                                        
+var yDown = null;
+
+function getTouches(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+                                                                         
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];                                      
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;                                      
+};                                                
+                                                                         
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+                                                                         
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+          slideTiles(grid.cellsByRow.map(row => [...row].reverse()))
+        } else {
+          slideTiles(grid.cellsByRow)
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+          slideTiles(grid.cellsByColumn.map(column => [...column].reverse())) 
+        } else { 
+          slideTiles(grid.cellsByColumn)
+        }                                                                 
+    }
+    /* reset values */
+    xDown = null;
+    yDown = null;                                             
+};
+
   grid.cells.forEach(cell => cell.mergeTiles())
 
   const newTile = new Tile(gameBoard)
