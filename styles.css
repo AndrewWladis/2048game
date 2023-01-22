@@ -1,8 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;700&display=swap');
+
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: Arial;
 }
-  
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
+
 body {
     background-image: url('background.svg');
     background-size: cover;
@@ -52,15 +65,18 @@ body {
     text-align: center;
     font-size: 10vmin;
     padding-bottom: 0;
-    margin-bottom: 0;
-    margin-top: 2%;
+    margin-bottom: 5%;
+    margin-top: 0;
+    padding-top: 0;
+    font-family: 'Sofia Sans', sans-serif;
 }
 
 .modal-text {
     font-size: 4.5vmin;
     padding-left: 2%;
     padding-right: 2%;
-    padding-top: 0.5%;
+    padding-top: 5%;
+    margin: 0;
     text-align: center;
 }
 
@@ -91,6 +107,10 @@ body {
 
 @keyframes leave {
     0% { opacity: 100%; }
-    40% { opacity: 80%; }
     100% { opacity: 0%; }
+}
+
+@keyframes comeBack {
+    0% { opacity: 0%; }
+    100% { opacity: 100%; }
 }

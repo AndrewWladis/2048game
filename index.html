@@ -39,9 +39,9 @@
     }
     const modal = document.querySelector('.modal-content')
     function hideModal() {
-        modal.style.animation = 'leave 0.1s'
+        modal.style.animation = 'leave 0.2s'
         setTimeout(() => {
-            modal.remove()
+            modal.style.opacity = 0;
         }, 99)
     }
     modal.addEventListener('click', hideModal)
