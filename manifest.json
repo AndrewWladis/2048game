@@ -21,6 +21,6 @@
     "theme_color": "rgb(145, 173, 113)",
     "background_color": "rgb(145, 173, 113)",
     "display": "standalone",
-    "description": "Weather forecast information",
+    "description": "A 2048 game",
     "start_url": "index.html"
 }
