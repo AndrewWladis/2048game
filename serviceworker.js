@@ -14,7 +14,8 @@ const assets = [
   "/Grid.js",
   "/mstile-150x150.png",
   "/safari-pinned-tab.svg",
-  "/Tile.js"
+  "/Tile.js",
+  '/favicon-512x512.png'
 ]
 
 self.addEventListener("install", installEvent => {
