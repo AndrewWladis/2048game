@@ -1,6 +1,25 @@
 import Grid from "./Grid.js"
 import Tile from "./Tile.js"
 
+
+function createLoseScreen() {
+  let aTag = document.createElement('a')
+  aTag.classList.add('modal-text')
+  aTag.href = './index.html'
+
+  let bigChungusModal = document.createElement('div')
+  bigChungusModal.classList.add('modal-content')
+
+  let modalText = document.createElement('p')
+  modalText.classList.add('modal-text')
+  modalText.innerText = 'You Lost! Click me to start again. Now, no more half measures.'
+  
+  bigChungusModal.appendChild(modalText)
+  aTag.appendChild(bigChungusModal)
+  //<a class="modal-text" href="/index.html"><div class="modal-content"><p class="modal-text">You Lost! Click me to start again. Now, no more half measures.</p></div></a>
+  document.body.innerHTML += '<a style="color: black;" class="modal-text" href="/index.html"><div class="modal-content"><p class="modal-header">You Lost!</p><br><p class="modal-header">Click to start again.</p><br><p class="modal-header">No more half measures.</p></div></a>';
+}
+
 const gameBoard = document.getElementById("game-board")
 
 const grid = new Grid(gameBoard)
@@ -54,7 +73,7 @@ async function handleInput(e) {
 
   if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
     newTile.waitForTransition(true).then(() => {
-      alert("You lose")
+      createLoseScreen()
     })
     return
   }
