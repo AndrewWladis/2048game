@@ -8,11 +8,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar" content="rgb(145, 173, 113)" />
+    <meta name="theme-color" content="rgb(145, 173, 113)" />
     <link rel="stylesheet" href="styles.css">
     <script src="./script.js" type="module"></script>
     <style>
@@ -29,6 +28,14 @@
     </div>
 </body>
 <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+            navigator.serviceWorker
+                .register("/serviceWorker.js")
+                .then(res => console.log("service worker registered"))
+                .catch(err => console.log("service worker not registered", err))
+        })
+    }
     const modal = document.querySelector('.modal-content')
     function hideModal() {
         modal.style.animation = 'leave 0.1s'
