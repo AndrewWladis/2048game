@@ -47,7 +47,22 @@ async function handleInput(e) {
       return
   }
 
- document.addEventListener('touchstart', handleTouchStart, false);        
+  grid.cells.forEach(cell => cell.mergeTiles())
+
+  const newTile = new Tile(gameBoard)
+  grid.randomEmptyCell().tile = newTile
+
+  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+    newTile.waitForTransition(true).then(() => {
+      alert("You lose")
+    })
+    return
+  }
+
+  setupInput()
+}
+
+document.addEventListener('touchstart', handleTouchStart, false);        
 document.addEventListener('touchmove', handleTouchMove, false);
 
 var xDown = null;                                                        
@@ -77,36 +92,21 @@ function handleTouchMove(evt) {
                                                                          
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
-          slideTiles(grid.cellsByRow.map(row => [...row].reverse()))
+          moveRight() 
         } else {
-          slideTiles(grid.cellsByRow)
+          moveLeft()
         }                       
     } else {
         if ( yDiff > 0 ) {
-          slideTiles(grid.cellsByColumn.map(column => [...column].reverse())) 
+          moveDown()
         } else { 
-          slideTiles(grid.cellsByColumn)
+          moveUp()
         }                                                                 
     }
     /* reset values */
     xDown = null;
     yDown = null;                                             
 };
-
-  grid.cells.forEach(cell => cell.mergeTiles())
-
-  const newTile = new Tile(gameBoard)
-  grid.randomEmptyCell().tile = newTile
-
-  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
-    newTile.waitForTransition(true).then(() => {
-      alert("You lose")
-    })
-    return
-  }
-
-  setupInput()
-}
 
 function moveUp() {
   return slideTiles(grid.cellsByColumn)
