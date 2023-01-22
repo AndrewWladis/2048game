@@ -62,6 +62,19 @@ async function handleInput(e) {
   setupInput()
 }
 
+function forSwipe() {
+  grid.cells.forEach(cell => cell.mergeTiles())
+
+  const newTile = new Tile(gameBoard)
+  grid.randomEmptyCell().tile = newTile
+
+  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+    newTile.waitForTransition(true).then(() => {
+      alert("You lose")
+    })
+    return
+  }
+}
 document.addEventListener('touchstart', handleTouchStart, false);        
 document.addEventListener('touchmove', handleTouchMove, false);
 
@@ -93,14 +106,18 @@ function handleTouchMove(evt) {
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
           moveRight() 
+          forSwipe()
         } else {
           moveLeft()
+          forSwipe()
         }                       
     } else {
         if ( yDiff > 0 ) {
           moveDown()
+          forSwipe()
         } else { 
           moveUp()
+          forSwipe()
         }                                                                 
     }
     /* reset values */
