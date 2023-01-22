@@ -105,18 +105,18 @@ function handleTouchMove(evt) {
                                                                          
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
-          moveRight() 
+          moveLeft() 
           forSwipe()
         } else {
-          moveLeft()
+          moveRight() 
           forSwipe()
         }                       
     } else {
         if ( yDiff > 0 ) {
-          moveDown()
+          moveUp()
           forSwipe()
         } else { 
-          moveUp()
+          moveDown()
           forSwipe()
         }                                                                 
     }
