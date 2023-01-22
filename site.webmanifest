@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "515",
+    "short_name": "515",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "rgb(145, 173, 113)",
+    "background_color": "rgb(145, 173, 113)",
     "display": "standalone"
 }
